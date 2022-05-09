@@ -34,7 +34,7 @@ body {
 					<label class="layui-form-label">run_count</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="选填" name="run_count"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="not_require_number">
 					</div>
 					<label class="layui-form-label">table_name</label>
 					<div class="layui-input-inline">
@@ -56,41 +56,41 @@ body {
 				<div class="layui-form-item">
 					<label class="layui-form-label">device_fs</label>
 					<div class="layui-input-inline">
-						<textarea placeholder="请输入正确值" name="device_fs" class="layui-textarea"></textarea>
+						<textarea placeholder="请输入正确值" name="device_fs" class="layui-textarea" lay-verify="required"></textarea>
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">DB_IP</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="请输入正确值" name="DB_IP"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="required|ip">
 					</div>
 					<label class="layui-form-label">DB_port</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="请输入正确值" name="DB_port"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="required|number">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">test_node_IP</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="请输入正确值" name="test_node_IP"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="required|ip">
 					</div>
 					<label class="layui-form-label">test_node_username</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="请输入正确值" name="test_node_username"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="required">
 					</div>
 					<label class="layui-form-label">test_node_password</label>
 					<div class="layui-input-inline">
 						<input type="text" placeholder="请输入正确值" name="test_node_password"
-							autocomplete="off" class="layui-input">
+							autocomplete="off" class="layui-input" lay-verify="required">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button type="submit" class="layui-btn" >Create</button>
+						<button type="submit" class="layui-btn" lay-filter="formDemo" lay-submit>Create</button>
 					</div>
 				</div>
 			</form>
@@ -125,11 +125,11 @@ body {
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
 -->
-	<script type="text/javascript"
-		src="{{url_for('static',filename='personal/js/input-format.js')}}"></script>
-    <script type="text/javascript"
-	    src="{{url_for('static',filename='personal/js/JQuery.js')}}"></script>
-    <script src="{{ url_for('static',filename='layui/layui.all.js') }}"></script>
+<script type="text/javascript"
+	src="{{url_for('static',filename='personal/js/JQuery.js')}}"></script>
+<script src="{{ url_for('static',filename='layui/layui.all.js') }}"></script>
+<script type="text/javascript"
+	src="{{url_for('static',filename='personal/js/input-format.js')}}"></script>
 <!--<script type="text/javascript"-->
 <!--	src="{{url_for('static',filename='personal/js/performance-table.js')}}"></script>-->
 </body>

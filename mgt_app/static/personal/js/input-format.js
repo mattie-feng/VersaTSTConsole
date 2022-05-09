@@ -1,32 +1,12 @@
-function iqn_format(iqn){
-    var iqn_match_regular = /^iqn\.\d{4}-\d{2}\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:[a-zA-Z0-9.:-]+)?$/;
-	match_result = iqn_match_regular.test(iqn)
-	return match_result
-}
-
-function name_format(name){
-    var host_name_match_regular = /^[a-zA-Z]\w*$/;
-	match_result = host_name_match_regular.test(name)
-	return match_result
-}
-
-function iqn_myfunction2() {
-	document.getElementById("iqn_format").hidden = "hidden";
-	var input_result = $('#node').val();
-	var match_result = iqn_format(input_result)
-	if (!input_result) {
-		$("#host_iqn_hid").val("0");
-		document.getElementById("iqn_format").hidden = "hidden";
-	} else {
-		if (!match_result) {
-			$("#host_iqn_hid").val("0");
-			document.getElementById("iqn_format").hidden = "";
-		} else {
-			$("#host_iqn_hid").val("1");
-		}
-	}
-}
-
-
-
-
+layui.use(['form', 'layedit', 'laydate', 'element'], function() {
+	var form = layui.form, layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+    var $ = layui.jquery, element = layui.element;
+	form.verify({
+	  ip: [/^((2([0-4]\d|5[0-5]))|[1-9]?\d|1\d{2})(\.((2([0-4]\d|5[0-5]))|[1-9]?\d|1\d{2})){3}$/,'请填写正确的 IP 格式'],
+	  not_require_number: function(value){
+	  if(value){
+	    if(!new RegExp("^[0-9]+$").test(value)) return "填写数字"
+	  }
+	},
+  });
+});
