@@ -4,9 +4,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
 	form.verify({
 	  ip: [/^((2([0-4]\d|5[0-5]))|[1-9]?\d|1\d{2})(\.((2([0-4]\d|5[0-5]))|[1-9]?\d|1\d{2})){3}$/,'请填写正确的 IP 格式'],
 	  not_require_number: function(value){
-	  if(value){
-	    if(!new RegExp("^[0-9]+$").test(value)) return "填写数字"
-	  }
+	    if(value && !new RegExp("^[0-9]+$").test(value)) return "填写数字"
 	},
   });
 });

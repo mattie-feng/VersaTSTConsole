@@ -11,7 +11,8 @@ layui.use([ 'form', 'layedit', 'laydate', 'element' ], function() {
             data : [{name:"read",value:"read"},
                     {name:"write",value:"write"},
                     {name:"randread",value:"randread"},
-                    {name:"randwrite",value:"randwrite"}
+                    {name:"randwrite",value:"randwrite"},
+                    {name:"randrw",value:"randrw"}
             ]
         })
 });
