@@ -1,7 +1,6 @@
 # coding:utf-8
-
-from flask import jsonify, render_template, request, make_response, views
-from ..utils import read_config
+from flask import jsonify, render_template, make_response, views
+from mgt_app.utils import read_config
 import socket
 
 
@@ -20,7 +19,7 @@ class Index(views.MethodView):
 
 class IndexPreview(views.MethodView):
     def get(self):
-        return render_template("index_preview.html")
+        return render_template("index-preview.html")
 
 
 class VplxIp(views.MethodView):

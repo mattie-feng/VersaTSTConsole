@@ -20,7 +20,3 @@ class Video(views.MethodView):
 class RandomRW(views.MethodView):
     def get(self):
         return render_template("random-rw.html")
-
-# class PerformanceTab(views.MethodView):
-#     def get(self):
-#         return render_template("performance-tab.html")

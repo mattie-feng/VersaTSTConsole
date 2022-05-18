@@ -13,18 +13,13 @@ def read_config_file():
     return obj_cfg
 
 
-
 class Config():
 
     def __init__(self):
         self.cfg = read_config_file()
 
     def get_ip(self):
-        return self.cfg.get('VPLX','IP')
+        return self.cfg.get('VPLX', 'IP')
 
     def get_port(self):
         return self.cfg.get('VPLX', 'PORT')
-
-
-if __name__ == '__main__':
-    pass
