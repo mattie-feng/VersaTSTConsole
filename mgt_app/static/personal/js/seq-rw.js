@@ -24,7 +24,6 @@ function getHeadRI () {
     async: false
   }).done(function (result) {
     //回调操作
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -47,7 +46,6 @@ function getHeadRM () {
     async: false
   }).done(function (result) {
     //回调操作
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -70,7 +68,6 @@ function getHeadWI () {
     async: false
   }).done(function (result) {
     //回调操作
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -93,7 +90,6 @@ function getHeadWM () {
     async: false
   }).done(function (result) {
     //回调操作
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -133,6 +129,11 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     })
   })
 })
+
+// table.reload('seqRWTableRI');
+// table.reload('seqRWTableRM');
+// table.reload('seqRWTableWI');
+// table.reload('seqRWTableWM');
 
 layui.use('table', function () {
   var table = layui.table

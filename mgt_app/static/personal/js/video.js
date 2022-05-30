@@ -35,6 +35,11 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
   })
 })
 
+// table.reload('videoTableRI');
+// table.reload('videoTableRM');
+// table.reload('videoTableWI');
+// table.reload('videoTableWM');
+
 function getHeadRI () {
   var head_data = new Array()
   $.ajax({
@@ -43,7 +48,6 @@ function getHeadRI () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -65,7 +69,6 @@ function getHeadRM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -87,7 +90,6 @@ function getHeadWI () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -109,7 +111,6 @@ function getHeadWM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data = result
     console.log(result)
     head_data.push([
       {

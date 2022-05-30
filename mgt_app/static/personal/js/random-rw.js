@@ -38,6 +38,9 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
   })
 })
 
+// table.reload('randomRWTableRI');
+// table.reload('randomRWTableRM');
+
 function getHeadRI () {
   var head_data = new Array()
   $.ajax({
@@ -47,7 +50,6 @@ function getHeadRI () {
     async: false
   }).done(function (result) {
     //回调操作
-    head_data = result
     console.log(result)
     head_data.push([
       {
@@ -69,7 +71,6 @@ function getHeadRM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data = result
     console.log(result)
     head_data.push([
       {
