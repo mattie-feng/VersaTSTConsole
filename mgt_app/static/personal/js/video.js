@@ -8,13 +8,14 @@ var secondary_head_data = [
   { field: '1M', title: '1M' }
 ]
 
-layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+layui.use(['form', 'layer', 'table'], function () {
   var form = layui.form,
     layer = layui.layer,
-    layedit = layui.layedit,
-    laydate = layui.laydate
-  var $ = layui.jquery,
-    element = layui.element
+    table = layui.table
+  // layedit = layui.layedit,
+  // laydate = layui.laydate
+  var $ = layui.jquery
+  // element = layui.element
   form.on('submit(video)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -27,6 +28,10 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
       async: true,
       success: function (result) {
         layer.msg(result, { icon: 1 })
+        table.reload('videoTableRI')
+        table.reload('videoTableRM')
+        table.reload('videoTableWI')
+        table.reload('videoTableWM')
       },
       error: function () {
         layer.alert('ERROR', { icon: 5 })
@@ -34,11 +39,6 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     })
   })
 })
-
-// table.reload('videoTableRI');
-// table.reload('videoTableRM');
-// table.reload('videoTableWI');
-// table.reload('videoTableWM');
 
 function getHeadRI () {
   var head_data = new Array()

@@ -103,13 +103,14 @@ function getHeadWM () {
   return head_data
 }
 
-layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+layui.use(['form', 'layer', 'table'], function () {
   var form = layui.form,
     layer = layui.layer,
-    layedit = layui.layedit,
-    laydate = layui.laydate
-  var $ = layui.jquery,
-    element = layui.element
+    table = layui.table
+  // layedit = layui.layedit,
+  // laydate = layui.laydate
+  var $ = layui.jquery
+  // element = layui.element
   form.on('submit(seqRW)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -122,6 +123,10 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
       async: true,
       success: function (result) {
         layer.msg(result, { icon: 1 })
+        table.reload('seqRWTableRI')
+        table.reload('seqRWTableRM')
+        table.reload('seqRWTableWI')
+        table.reload('seqRWTableWM')
       },
       error: function () {
         layer.alert('ERROR', { icon: 5 })
@@ -129,11 +134,6 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     })
   })
 })
-
-// table.reload('seqRWTableRI');
-// table.reload('seqRWTableRM');
-// table.reload('seqRWTableWI');
-// table.reload('seqRWTableWM');
 
 layui.use('table', function () {
   var table = layui.table

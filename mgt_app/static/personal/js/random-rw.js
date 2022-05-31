@@ -10,13 +10,14 @@ var secondary_head_data = [
   { field: '64k', title: '64k' }
 ]
 
-layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+layui.use(['form', 'layer', 'table'], function () {
   var form = layui.form,
-    layer = layui.layer,
-    layedit = layui.layedit,
-    laydate = layui.laydate
-  var $ = layui.jquery,
-    element = layui.element
+    layer = layui.layer
+    table = layui.table
+  // layedit = layui.layedit,
+  // laydate = layui.laydate
+  var $ = layui.jquery
+  // element = layui.element
 
   form.on('submit(randomRW)', function (data) {
     create_data = JSON.stringify(data.field)
@@ -30,6 +31,8 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
       async: true,
       success: function (result) {
         layer.msg(result, { icon: 1 })
+        table.reload('randomRWTableRI')
+        table.reload('randomRWTableRM')
       },
       error: function () {
         layer.alert('ERROR', { icon: 5 })
@@ -37,9 +40,6 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
     })
   })
 })
-
-// table.reload('randomRWTableRI');
-// table.reload('randomRWTableRM');
 
 function getHeadRI () {
   var head_data = new Array()
