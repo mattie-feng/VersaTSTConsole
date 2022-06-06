@@ -16,8 +16,8 @@ layui.use(['form', 'layer', 'table'], function () {
     table = layui.table
   // layedit = layui.layedit,
   // laydate = layui.laydate
-  var $ = layui.jquery
-  // element = layui.element
+  var $ = layui.jquery,
+  element = layui.element
 
   form.on('submit(randomRW)', function (data) {
     create_data = JSON.stringify(data.field)
@@ -28,15 +28,18 @@ layui.use(['form', 'layer', 'table'], function () {
       data: {
         data: create_data
       },
-      async: true,
-      success: function (result) {
-        layer.msg(result, { icon: 1 })
-        table.reload('randomRWTableRI')
-        table.reload('randomRWTableRM')
-      },
-      error: function () {
-        layer.alert('ERROR', { icon: 5 })
-      }
+      async: false,
+      // success: function (result) {
+      //   layer.msg(result, { icon: 1 })
+      //   table.reload('randomRWTableRI')
+      //   table.reload('randomRWTableRM')
+      // },
+      // error: function (e) {
+      //   layer.alert('ERROR', { icon: 5 })
+      // }
+    }).done(function (result) {
+      console.log(result)
+      layer.msg(result);
     })
   })
 })
@@ -49,8 +52,6 @@ function getHeadRI () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    //回调操作
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,
@@ -71,7 +72,6 @@ function getHeadRM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,

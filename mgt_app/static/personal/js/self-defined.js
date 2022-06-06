@@ -11,7 +11,6 @@ var serverIp = get_vlpx_ip()
 //   }).done(function (result) {
 //     //回调操作
 //     head_data = result
-//     console.log(result)
 
 //   })
 //   head_data = [
@@ -60,12 +59,15 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
         data: create_data
       },
       async: true,
-      success: function (result) {
-        layer.msg(result, { icon: 1 })
-      },
-      error: function () {
-        layer.alert('ERROR', { icon: 5 })
-      }
+      // success: function (result) {
+      //   layer.msg(result, { icon: 1 })
+      // },
+      // error: function () {
+      //   layer.alert('ERROR', { icon: 5 })
+      // }
+    }).done(function (result) {
+      console.log(result)
+      layer.msg(result);
     })
   })
 })

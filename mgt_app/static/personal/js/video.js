@@ -14,8 +14,8 @@ layui.use(['form', 'layer', 'table'], function () {
     table = layui.table
   // layedit = layui.layedit,
   // laydate = layui.laydate
-  var $ = layui.jquery
-  // element = layui.element
+  var $ = layui.jquery,
+  element = layui.element
   form.on('submit(video)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -26,16 +26,19 @@ layui.use(['form', 'layer', 'table'], function () {
         data: create_data
       },
       async: true,
-      success: function (result) {
-        layer.msg(result, { icon: 1 })
-        table.reload('videoTableRI')
-        table.reload('videoTableRM')
-        table.reload('videoTableWI')
-        table.reload('videoTableWM')
-      },
-      error: function () {
-        layer.alert('ERROR', { icon: 5 })
-      }
+      // success: function (result) {
+      //   layer.msg(result, { icon: 1 })
+      //   table.reload('videoTableRI')
+      //   table.reload('videoTableRM')
+      //   table.reload('videoTableWI')
+      //   table.reload('videoTableWM')
+      // },
+      // error: function () {
+      //   layer.alert('ERROR', { icon: 5 })
+      // }
+    }).done(function (result) {
+      console.log(result)
+      layer.msg(result);
     })
   })
 })
@@ -48,7 +51,6 @@ function getHeadRI () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,
@@ -69,7 +71,6 @@ function getHeadRM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,
@@ -90,7 +91,6 @@ function getHeadWI () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,
@@ -111,7 +111,6 @@ function getHeadWM () {
     dataType: 'json',
     async: false
   }).done(function (result) {
-    console.log(result)
     head_data.push([
       {
         field: result.table_name,
