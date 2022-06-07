@@ -80,7 +80,16 @@
               </li>
               <li class="layui-nav-item ">
                 <a class="title"><span>Reliability Test</span></a>
-                <dl class="layui-nav-child"></dl>
+                <dl class="layui-nav-child">
+                  <dd>
+                    <a onclick="selectItem(this)" id="spof">Spof scenario</a>
+                  </dd>
+                  <dd>
+                    <a onclick="selectItem(this)" id="spof_pvc"
+                      >Spof_pvc scenario</a
+                    >
+                  </dd>
+                </dl>
               </li>
             </ul>
           </div>
@@ -134,6 +143,18 @@
           })
         } else if (obj.id == 'random_rw') {
           $('#mainpage iframe').attr('src', '/performance/random-rw')
+          $('#mainpage iframe').css({
+            'margin-left': '15%',
+            'max-width': '1700px'
+          })
+        } else if (obj.id == 'spof') {
+          $('#mainpage iframe').attr('src', '/reliability/spof')
+          $('#mainpage iframe').css({
+            'margin-left': '15%',
+            'max-width': '1700px'
+          })
+        } else if (obj.id == 'spof_pvc') {
+          $('#mainpage iframe').attr('src', '/reliability/spof-pvc')
           $('#mainpage iframe').css({
             'margin-left': '15%',
             'max-width': '1700px'
