@@ -24,3 +24,23 @@ layui.use(['form', 'layer', 'table'], function () {
     })
   })
 })
+
+layui.use('table', function () {
+  var table = layui.table
+  table.render({
+    elem: '#spofPVCTable',
+    url: serverIp + '/reliablility/spof-pvc/show',
+    page: true,
+    cols: [
+      [
+        { field: 'Test_scenario', title: 'Test_scenario' },
+        { field: 'Test_action', title: 'Test_action' },
+        { field: 'Test_result', title: 'Test_result' },
+        { field: 'Test_times', title: 'Test_times' },
+        { field: 'Expected_times', title: 'Expected_times' },
+        { field: 'Test_date', title: 'Test_date' },
+        { field: 'Test_name', title: 'Test_name' }
+      ]
+    ]
+  })
+})
