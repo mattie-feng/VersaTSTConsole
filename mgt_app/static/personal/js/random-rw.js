@@ -13,11 +13,11 @@ var secondary_head_data = [
 layui.use(['form', 'layer', 'table'], function () {
   var form = layui.form,
     layer = layui.layer
-    table = layui.table
+  table = layui.table
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
-  element = layui.element
+    element = layui.element
 
   form.on('submit(randomRW)', function (data) {
     create_data = JSON.stringify(data.field)
@@ -28,7 +28,7 @@ layui.use(['form', 'layer', 'table'], function () {
       data: {
         data: create_data
       },
-      async: false,
+      async: false
       // success: function (result) {
       //   layer.msg(result, { icon: 1 })
       //   table.reload('randomRWTableRI')
@@ -39,7 +39,7 @@ layui.use(['form', 'layer', 'table'], function () {
       // }
     }).done(function (result) {
       console.log(result)
-      layer.msg(result);
+      layer.msg(result)
     })
   })
 })
@@ -64,43 +64,12 @@ function getHeadRI () {
   return head_data
 }
 
-function getHeadRM () {
-  var head_data = new Array()
-  $.ajax({
-    url: serverIp + '/performance/random-rw/show/read/mbps',
-    type: 'GET',
-    dataType: 'json',
-    async: false
-  }).done(function (result) {
-    head_data.push([
-      {
-        field: result.table_name,
-        title: result.table_name,
-        colspan: secondary_head_data.length
-      }
-    ])
-  })
-  head_data.push(secondary_head_data)
-  return head_data
-}
-
 layui.use('table', function () {
   var table = layui.table
   var headData = getHeadRI()
   table.render({
     elem: '#randomRWTableRI',
     url: serverIp + '/performance/random-rw/show/read/iops',
-    page: true,
-    cols: headData
-  })
-})
-
-layui.use('table', function () {
-  var table = layui.table
-  var headData = getHeadRM()
-  table.render({
-    elem: '#randomRWTableRM',
-    url: serverIp + '/performance/random-rw/show/read/mbps',
     page: true,
     cols: headData
   })

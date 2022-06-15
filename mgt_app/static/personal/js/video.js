@@ -15,7 +15,7 @@ layui.use(['form', 'layer', 'table'], function () {
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
-  element = layui.element
+    element = layui.element
   form.on('submit(video)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -25,7 +25,7 @@ layui.use(['form', 'layer', 'table'], function () {
       data: {
         data: create_data
       },
-      async: true,
+      async: true
       // success: function (result) {
       //   layer.msg(result, { icon: 1 })
       //   table.reload('videoTableRI')
@@ -38,55 +38,15 @@ layui.use(['form', 'layer', 'table'], function () {
       // }
     }).done(function (result) {
       console.log(result)
-      layer.msg(result);
+      layer.msg(result)
     })
   })
 })
-
-function getHeadRI () {
-  var head_data = new Array()
-  $.ajax({
-    url: serverIp + '/performance/video/show/read/iops',
-    type: 'GET',
-    dataType: 'json',
-    async: false
-  }).done(function (result) {
-    head_data.push([
-      {
-        field: result.table_name,
-        title: result.table_name,
-        colspan: secondary_head_data.length
-      }
-    ])
-  })
-  head_data.push(secondary_head_data)
-  return head_data
-}
 
 function getHeadRM () {
   var head_data = new Array()
   $.ajax({
     url: serverIp + '/performance/video/show/read/mbps',
-    type: 'GET',
-    dataType: 'json',
-    async: false
-  }).done(function (result) {
-    head_data.push([
-      {
-        field: result.table_name,
-        title: result.table_name,
-        colspan: secondary_head_data.length
-      }
-    ])
-  })
-  head_data.push(secondary_head_data)
-  return head_data
-}
-
-function getHeadWI () {
-  var head_data = new Array()
-  $.ajax({
-    url: serverIp + '/performance/video/show/write/iops',
     type: 'GET',
     dataType: 'json',
     async: false
@@ -125,32 +85,10 @@ function getHeadWM () {
 
 layui.use('table', function () {
   var table = layui.table
-  var headData = getHeadRI()
-  table.render({
-    elem: '#videoTableRI',
-    url: serverIp + '/performance/video/show/read/iops',
-    page: true,
-    cols: headData
-  })
-})
-
-layui.use('table', function () {
-  var table = layui.table
   var headData = getHeadRM()
   table.render({
     elem: '#videoTableRM',
     url: serverIp + '/performance/video/show/read/mbps',
-    page: true,
-    cols: headData
-  })
-})
-
-layui.use('table', function () {
-  var table = layui.table
-  var headData = getHeadWI()
-  table.render({
-    elem: '#videoTableWI',
-    url: serverIp + '/performance/video/show/write/iops',
     page: true,
     cols: headData
   })
