@@ -27,7 +27,7 @@
     <div class="layui-row">
       <fieldset
         class="layui-elem-field site-demo-button"
-        style="margin-top: 20px; margin-left: 20px; width: 95%;"
+        style="margin-top: 20px; margin-left: 20px; width: 65%;"
       >
         <legend>Test case of Spof scenario</legend>
         <form class="layui-form" action="">
@@ -53,15 +53,6 @@
                 class="layui-input"
                 lay-verify="required|number"
               />
-            </div>
-            <label class="layui-form-label">test_action</label>
-            <div class="layui-input-inline">
-              <select name="test_action">
-                <option value="node_down" selected>node_down</option>
-                <option value="switch_port_down">switch_port_down</option>
-                <option value="interface_down">interface_down</option>
-                <option value="manual">manual</option>
-              </select>
             </div>
           </div>
           <div class="layui-form-item">
@@ -89,32 +80,57 @@
             </div>
           </div>
           <div class="layui-form-item">
-            <label class="layui-form-label">down_switch</label>
+            <label class="layui-form-label">test_action</label>
             <div class="layui-input-inline">
-              <textarea
-                placeholder="请输入正确值"
-                name="down_switch"
-                class="layui-textarea"
-                lay-verify="required"
-              ></textarea>
+              <select name="test_action" lay-filter="test_action">
+                <option value="node_down" selected>node_down</option>
+                <option value="switch_port_down">switch_port_down</option>
+                <option value="interface_down">interface_down</option>
+                <option value="manual">manual</option>
+              </select>
             </div>
+          </div>
+          <div class="layui-form-item" id="down_host">
             <label class="layui-form-label">down_host</label>
             <div class="layui-input-inline">
               <textarea
                 placeholder="请输入正确值"
                 name="down_host"
                 class="layui-textarea"
-                lay-verify="required"
               ></textarea>
             </div>
+          </div>
+          <div class="layui-form-item" id="down_switch" hidden>
+            <label class="layui-form-label">down_switch</label>
+            <div class="layui-input-inline">
+              <textarea
+                placeholder="请输入正确值"
+                name="down_switch"
+                class="layui-textarea"
+              ></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item" id="down_interface" hidden>
             <label class="layui-form-label">down_interface</label>
             <div class="layui-input-inline">
               <textarea
                 placeholder="请输入正确值"
                 name="down_interface"
                 class="layui-textarea"
-                lay-verify="required"
               ></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item" id="manual" hidden>
+            <label class="layui-form-label">waiting_time</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="waiting_time"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="number"
+              />
             </div>
           </div>
           <div class="layui-form-item">
@@ -153,16 +169,14 @@
             </div>
           </div>
           <div class="layui-form-item">
-            <div class="layui-input-block">
-              <button
-                type="submit"
-                class="layui-btn"
-                lay-filter="spof"
-                lay-submit
-              >
-                Create
-              </button>
-            </div>
+            <button
+              type="submit"
+              class="layui-btn layui-btn-fluid layui-btn-radius"
+              lay-filter="spof"
+              lay-submit
+            >
+              Create
+            </button>
           </div>
         </form>
       </fieldset>
