@@ -1,14 +1,13 @@
 var serverIp = get_vlpx_ip()
 
-layui.use(['form', 'layer', 'table'], function () {
+layui.use(['form', 'layer'], function () {
   var form = layui.form,
-    layer = layui.layer,
-    table = layui.table
+    layer = layui.layer
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
-  var selectedid = 'down_host'
+
   form.on('submit(spof)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -23,25 +22,6 @@ layui.use(['form', 'layer', 'table'], function () {
       console.log(result)
       layer.msg(result)
     })
-  })
-  form.on('select(test_action)', function (data) {
-    document.getElementById(selectedid).hidden = true
-    if (data.value == 'node_down') {
-      document.getElementById('down_host').hidden = false
-      selectedid = 'down_host'
-    }
-    if (data.value == 'switch_port_down') {
-      document.getElementById('down_switch').hidden = false
-      selectedid = 'down_switch'
-    }
-    if (data.value == 'interface_down') {
-      document.getElementById('down_interface').hidden = false
-      selectedid = 'down_interface'
-    }
-    if (data.value == 'manual') {
-      document.getElementById('manual').hidden = false
-      selectedid = 'manual'
-    }
   })
 })
 

@@ -1,13 +1,13 @@
 var serverIp = get_vlpx_ip()
 
-layui.use(['form', 'layer', 'table'], function () {
+layui.use(['form', 'layer'], function () {
   var form = layui.form,
-    layer = layui.layer,
-    table = layui.table
+    layer = layui.layer
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
+
   form.on('submit(spofPVC)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({

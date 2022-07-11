@@ -12,8 +12,8 @@ var secondary_head_data = [
 
 layui.use(['form', 'layer', 'table'], function () {
   var form = layui.form,
-    layer = layui.layer
-  table = layui.table
+    layer = layui.layer,
+    table = layui.table
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,

@@ -27,7 +27,7 @@
     <div class="layui-row">
       <fieldset
         class="layui-elem-field site-demo-button"
-        style="margin-top: 20px; margin-left: 20px; width: 65%;"
+        style="margin-top: 20px; margin-left: 20px; width: 96%;"
       >
         <legend>Test case of Spof scenario</legend>
         <form class="layui-form" action="">
@@ -168,6 +168,65 @@
               />
             </div>
           </div>
+          <hr class="layui-border-red" />
+          <div class="layui-form-item">
+            <label class="layui-form-label">test_node_hostname</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="test_node_hostname"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="required"
+              />
+            </div>
+            <label class="layui-form-label">test_node_IP</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="test_node_IP"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="required|ip"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">test_node_port</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="test_node_port"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="required|number"
+              />
+            </div>
+            <label class="layui-form-label">test_node_password</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="test_node_password"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="required"
+              />
+            </div>
+            <div class="layui-input-inline">
+              <button
+                type="button"
+                class="layui-btn layui-btn-primary layui-btn-sm"
+                lay-active="addHost"
+              >
+                <i class="layui-icon">&#xe654;</i>
+              </button>
+            </div>
+          </div>
+          <div id="testnode"></div>
           <div class="layui-form-item">
             <button
               type="submit"
