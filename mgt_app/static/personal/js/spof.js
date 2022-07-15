@@ -1,12 +1,13 @@
 var serverIp = get_vlpx_ip()
 
-layui.use(['form', 'layer'], function () {
+layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
     layer = layui.layer
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
+  var upload = layui.upload
 
   form.on('submit(spof)', function (data) {
     create_data = JSON.stringify(data.field)
@@ -22,6 +23,23 @@ layui.use(['form', 'layer'], function () {
       console.log(result)
       layer.msg(result)
     })
+  })
+
+  //执行实例
+  var uploadInst = upload.render({
+    elem: '#upload',
+    url: 'https://httpbin.org/post',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      //上传成功的一些操作
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
   })
 })
 
