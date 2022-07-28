@@ -78,6 +78,17 @@
                 lay-verify="required"
               />
             </div>
+            <label class="layui-form-label">go_meter_bs</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="go_meter_bs"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="required"
+              />
+            </div>
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">test_action</label>
@@ -98,6 +109,38 @@
                 name="down_host"
                 class="layui-textarea"
               ></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item" id="bmc">
+            <label class="layui-form-label">bmc_ip</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="bmc_ip"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+            <label class="layui-form-label">bmc_user</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="bmc_user"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+            <label class="layui-form-label">bmc_password</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="bmc_password"
+                autocomplete="off"
+                class="layui-input"
+              />
             </div>
           </div>
           <div class="layui-form-item" id="down_switch" hidden>
@@ -168,6 +211,19 @@
               />
             </div>
           </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">mail_receiver</label>
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                placeholder="请输入正确值"
+                name="mail_receiver"
+                autocomplete="off"
+                class="layui-input"
+                lay-verify="not_require_email"
+              />
+            </div>
+          </div>
           <hr class="layui-border-red" />
           <div class="layui-form-item">
             <label class="layui-form-label">test_node_hostname</label>
@@ -226,6 +282,7 @@
               </button>
             </div>
           </div>
+
           <div id="testnode"></div>
           <div class="layui-form-item">
             <button

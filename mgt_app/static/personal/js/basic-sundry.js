@@ -39,7 +39,7 @@ layui.use(['form', 'layedit', 'laydate', 'element', 'util'], function () {
   var $ = layui.jquery,
     element = layui.element
   var util = layui.util
-  var selectedid = 'down_host'
+  var selectedItem = new Array('down_host', 'bmc')
 
   form.verify({
     ip: [
@@ -48,26 +48,34 @@ layui.use(['form', 'layedit', 'laydate', 'element', 'util'], function () {
     ],
     not_require_number: function (value) {
       if (value && !new RegExp('^[0-9]+$').test(value)) return '填写数字'
+    },
+    not_require_email: function (value) {
+      if (value && !new RegExp('^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$').test(value)) return '邮箱格式不正确'
     }
   })
 
   form.on('select(test_action)', function (data) {
-    document.getElementById(selectedid).hidden = true
+    selectedItem.forEach(function (elem) {
+      document.getElementById(elem).hidden = true
+    })
+    selectedItem = []
     if (data.value == 'node_down') {
       document.getElementById('down_host').hidden = false
-      selectedid = 'down_host'
+      document.getElementById('bmc').hidden = false
+      selectedItem.push('down_host')
+      selectedItem.push('bmc')
     }
     if (data.value == 'switch_port_down') {
       document.getElementById('down_switch').hidden = false
-      selectedid = 'down_switch'
+      selectedItem.push('down_switch')
     }
     if (data.value == 'interface_down') {
       document.getElementById('down_interface').hidden = false
-      selectedid = 'down_interface'
+      selectedItem.push('down_interface')
     }
     if (data.value == 'manual') {
       document.getElementById('manual').hidden = false
-      selectedid = 'manual'
+      selectedItem.push('manual')
     }
   })
 
