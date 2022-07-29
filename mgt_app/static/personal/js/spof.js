@@ -2,12 +2,12 @@ var serverIp = get_vlpx_ip()
 
 layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
-    layer = layui.layer
+    layer = layui.layer,
+    upload = layui.upload
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
-  var upload = layui.upload
 
   form.on('submit(spof)', function (data) {
     create_data = JSON.stringify(data.field)

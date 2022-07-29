@@ -1,8 +1,9 @@
 var serverIp = get_vlpx_ip()
 
-layui.use(['form', 'layer'], function () {
+layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
-    layer = layui.layer
+    layer = layui.layer,
+    upload = layui.upload
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
@@ -22,6 +23,21 @@ layui.use(['form', 'layer'], function () {
       console.log(result)
       layer.msg(result)
     })
+  })
+  upload.render({
+    elem: '#uploadSpofPVC',
+    url: 'https://httpbin.org/post',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      return layer.msg('上传成功')
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
   })
 })
 

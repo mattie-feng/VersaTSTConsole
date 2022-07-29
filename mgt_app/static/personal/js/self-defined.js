@@ -38,13 +38,15 @@ var serverIp = get_vlpx_ip()
 //   })
 // })
 
-layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+layui.use(['form', 'layedit', 'laydate', 'element', 'upload'], function () {
   var form = layui.form,
     layer = layui.layer,
-    layedit = layui.layedit,
-    laydate = layui.laydate
+    upload = layui.upload
+    // layedit = layui.layedit,
+    // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
+
   form.on('submit(selfDefined)', function (data) {
     if (!data.field.rw) {
       layer.msg('请选择 rw 选项', { icon: 5 })
@@ -58,7 +60,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
       data: {
         data: create_data
       },
-      async: true,
+      async: true
       // success: function (result) {
       //   layer.msg(result, { icon: 1 })
       // },
@@ -67,7 +69,23 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function () {
       // }
     }).done(function (result) {
       console.log(result)
-      layer.msg(result);
+      layer.msg(result)
     })
+  })
+
+  upload.render({
+    elem: '#uploadSelfDefined',
+    url: 'https://httpbin.org/post',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      return layer.msg('上传成功')
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
   })
 })

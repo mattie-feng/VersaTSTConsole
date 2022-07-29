@@ -98,14 +98,15 @@ function getHeadWM () {
   return head_data
 }
 
-layui.use(['form', 'layer', 'table'], function () {
+layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
     layer = layui.layer,
-    table = layui.table
+    upload = layui.upload
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
-  element = layui.element
+    element = layui.element
+
   form.on('submit(seqRW)', function (data) {
     create_data = JSON.stringify(data.field)
     $.ajax({
@@ -115,7 +116,7 @@ layui.use(['form', 'layer', 'table'], function () {
       data: {
         data: create_data
       },
-      async: true,
+      async: true
       // success: function (result) {
       //   layer.msg(result, { icon: 1 })
       //   table.reload('seqRWTableRI')
@@ -128,8 +129,24 @@ layui.use(['form', 'layer', 'table'], function () {
       // }
     }).done(function (result) {
       console.log(result)
-      layer.msg(result);
+      layer.msg(result)
     })
+  })
+
+  upload.render({
+    elem: '#uploadSeqRW',
+    url: 'https://httpbin.org/post',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      return layer.msg('上传成功')
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
   })
 })
 
