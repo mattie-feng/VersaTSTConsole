@@ -16,7 +16,9 @@
 //	return obj;
 //}
 
-function get_vlpx_ip () {
+var SERVERIP = getServerIP()
+
+function getServerIP () {
   var obj = new Object()
   $.ajax({
     url: '/vplxip',
@@ -50,7 +52,13 @@ layui.use(['form', 'layedit', 'laydate', 'element', 'util'], function () {
       if (value && !new RegExp('^[0-9]+$').test(value)) return '填写数字'
     },
     not_require_email: function (value) {
-      if (value && !new RegExp('^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$').test(value)) return '邮箱格式不正确'
+      if (
+        value &&
+        !new RegExp(
+          '^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$'
+        ).test(value)
+      )
+        return '邮箱格式不正确'
     }
   })
 

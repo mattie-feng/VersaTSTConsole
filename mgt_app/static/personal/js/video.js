@@ -1,5 +1,4 @@
-var serverIp = get_vlpx_ip()
-var secondary_head_data = [
+var SECONDARYHEAD = [
   { field: 'dev_fs', title: 'dev_fs' },
   { field: '64k', title: '64k' },
   { field: '128k', title: '128k' },
@@ -18,13 +17,13 @@ layui.use(['form', 'layer', 'upload'], function () {
     element = layui.element
 
   form.on('submit(video)', function (data) {
-    create_data = JSON.stringify(data.field)
+    createData = JSON.stringify(data.field)
     $.ajax({
-      url: serverIp + '/performance/video/create',
+      url: SERVERIP + '/performance/video/create',
       type: 'get',
       dataType: 'json',
       data: {
-        data: create_data
+        data: createData
       },
       async: true
       // success: function (result) {
@@ -61,43 +60,43 @@ layui.use(['form', 'layer', 'upload'], function () {
 })
 
 function getHeadRM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/video/show/read/mbps',
+    url: SERVERIP + '/performance/video/show/read/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 function getHeadWM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/video/show/write/mbps',
+    url: SERVERIP + '/performance/video/show/write/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 layui.use('table', function () {
@@ -105,7 +104,7 @@ layui.use('table', function () {
   var headData = getHeadRM()
   table.render({
     elem: '#videoTableRM',
-    url: serverIp + '/performance/video/show/read/mbps',
+    url: SERVERIP + '/performance/video/show/read/mbps',
     page: true,
     cols: headData
   })
@@ -116,7 +115,7 @@ layui.use('table', function () {
   var headData = getHeadWM()
   table.render({
     elem: '#videoTableWM',
-    url: serverIp + '/performance/video/show/write/mbps',
+    url: SERVERIP + '/performance/video/show/write/mbps',
     page: true,
     cols: headData
   })

@@ -1,5 +1,4 @@
-var serverIp = get_vlpx_ip()
-var secondary_head_data = [
+var SECONDARYHEAD = [
   { field: 'dev_fs', title: 'dev_fs' },
   { field: '1k', title: '1k' },
   { field: '2k', title: '2k' },
@@ -16,86 +15,86 @@ var secondary_head_data = [
 ]
 
 function getHeadRI () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/seq-rw/show/read/iops',
+    url: SERVERIP + '/performance/seq-rw/show/read/iops',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
     //回调操作
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 function getHeadRM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/seq-rw/show/read/mbps',
+    url: SERVERIP + '/performance/seq-rw/show/read/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
     //回调操作
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 function getHeadWI () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/seq-rw/show/write/iops',
+    url: SERVERIP + '/performance/seq-rw/show/write/iops',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
     //回调操作
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 function getHeadWM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/seq-rw/show/write/mbps',
+    url: SERVERIP + '/performance/seq-rw/show/write/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 layui.use(['form', 'layer', 'upload'], function () {
@@ -108,13 +107,13 @@ layui.use(['form', 'layer', 'upload'], function () {
     element = layui.element
 
   form.on('submit(seqRW)', function (data) {
-    create_data = JSON.stringify(data.field)
+    createData = JSON.stringify(data.field)
     $.ajax({
-      url: serverIp + '/performance/seq-rw/create',
+      url: SERVERIP + '/performance/seq-rw/create',
       type: 'get',
       dataType: 'json',
       data: {
-        data: create_data
+        data: createData
       },
       async: true
       // success: function (result) {
@@ -155,7 +154,7 @@ layui.use('table', function () {
   var headData = getHeadRI()
   table.render({
     elem: '#seqRWTableRI',
-    url: serverIp + '/performance/seq-rw/show/read/iops',
+    url: SERVERIP + '/performance/seq-rw/show/read/iops',
     page: true,
     cols: headData
   })
@@ -166,7 +165,7 @@ layui.use('table', function () {
   var headData = getHeadRM()
   table.render({
     elem: '#seqRWTableRM',
-    url: serverIp + '/performance/seq-rw/show/read/mbps',
+    url: SERVERIP + '/performance/seq-rw/show/read/mbps',
     page: true,
     cols: headData
   })
@@ -177,7 +176,7 @@ layui.use('table', function () {
   var headData = getHeadWI()
   table.render({
     elem: '#seqRWTableWI',
-    url: serverIp + '/performance/seq-rw/show/write/iops',
+    url: SERVERIP + '/performance/seq-rw/show/write/iops',
     page: true,
     cols: headData
   })
@@ -188,7 +187,7 @@ layui.use('table', function () {
   var headData = getHeadWM()
   table.render({
     elem: '#seqRWTableWM',
-    url: serverIp + '/performance/seq-rw/show/write/mbps',
+    url: SERVERIP + '/performance/seq-rw/show/write/mbps',
     page: true,
     cols: headData
   })

@@ -1,5 +1,3 @@
-var serverIp = get_vlpx_ip()
-
 layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
     layer = layui.layer,
@@ -10,13 +8,13 @@ layui.use(['form', 'layer', 'upload'], function () {
     element = layui.element
 
   form.on('submit(spof)', function (data) {
-    create_data = JSON.stringify(data.field)
+    createData = JSON.stringify(data.field)
     $.ajax({
-      url: serverIp + '/reliability/spof/create',
+      url: SERVERIP + '/reliability/spof/create',
       type: 'get',
       dataType: 'json',
       data: {
-        data: create_data
+        data: createData
       },
       async: true
     }).done(function (result) {
@@ -46,7 +44,7 @@ layui.use('table', function () {
   var table = layui.table
   table.render({
     elem: '#spofTable',
-    url: serverIp + '/reliablility/spof/show',
+    url: SERVERIP + '/reliablility/spof/show',
     page: true,
     cols: [
       [
