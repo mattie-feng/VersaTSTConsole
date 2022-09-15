@@ -25,7 +25,7 @@ layui.use(['form', 'layer', 'upload'], function () {
 
   upload.render({
     elem: '#uploadSpof',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/reliability/spof/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)

@@ -134,7 +134,7 @@ layui.use(['form', 'layer', 'upload'], function () {
 
   upload.render({
     elem: '#uploadSeqRW',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/performance/seq-rw/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)

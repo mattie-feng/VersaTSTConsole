@@ -35,7 +35,7 @@ layui.use(['form', 'layedit', 'laydate', 'element', 'upload'], function () {
 
   upload.render({
     elem: '#uploadSelfDefined',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/performance/self-defined/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)

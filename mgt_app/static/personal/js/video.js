@@ -44,7 +44,7 @@ layui.use(['form', 'layer', 'upload'], function () {
 
   upload.render({
     elem: '#uploadVideo',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/performance/video/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)

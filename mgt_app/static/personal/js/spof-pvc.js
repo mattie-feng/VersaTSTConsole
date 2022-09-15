@@ -24,7 +24,7 @@ layui.use(['form', 'layer', 'upload'], function () {
   })
   upload.render({
     elem: '#uploadSpofPVC',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/reliability/spof-pvc/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)

@@ -33,7 +33,7 @@ layui.use(['form', 'layer', 'upload'], function () {
 
   upload.render({
     elem: '#uploadRandomRW',
-    url: 'https://httpbin.org/post',
+    url: SERVERIP + '/performance/random-rw/upload',
     accept: 'file',
     done: function (res) {
       console.log(res)
