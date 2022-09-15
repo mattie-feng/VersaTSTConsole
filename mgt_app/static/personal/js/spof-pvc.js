@@ -1,21 +1,20 @@
-var serverIp = get_vlpx_ip()
-
-layui.use(['form', 'layer'], function () {
+layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
-    layer = layui.layer
+    layer = layui.layer,
+    upload = layui.upload
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
 
   form.on('submit(spofPVC)', function (data) {
-    create_data = JSON.stringify(data.field)
+    createData = JSON.stringify(data.field)
     $.ajax({
-      url: serverIp + '/reliability/spof-pvc/create',
+      url: SERVERIP + '/reliability/spof-pvc/create',
       type: 'get',
       dataType: 'json',
       data: {
-        data: create_data
+        data: createData
       },
       async: true
     }).done(function (result) {
@@ -23,13 +22,28 @@ layui.use(['form', 'layer'], function () {
       layer.msg(result)
     })
   })
+  upload.render({
+    elem: '#uploadSpofPVC',
+    url: SERVERIP + '/reliability/spof-pvc/upload',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      return layer.msg('上传成功')
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
+  })
 })
 
 layui.use('table', function () {
   var table = layui.table
   table.render({
     elem: '#spofPVCTable',
-    url: serverIp + '/reliablility/spof-pvc/show',
+    url: SERVERIP + '/reliablility/spof-pvc/show',
     page: true,
     cols: [
       [

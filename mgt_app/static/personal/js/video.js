@@ -1,5 +1,4 @@
-var serverIp = get_vlpx_ip()
-var secondary_head_data = [
+var SECONDARYHEAD = [
   { field: 'dev_fs', title: 'dev_fs' },
   { field: '64k', title: '64k' },
   { field: '128k', title: '128k' },
@@ -8,22 +7,23 @@ var secondary_head_data = [
   { field: '1M', title: '1M' }
 ]
 
-layui.use(['form', 'layer', 'table'], function () {
+layui.use(['form', 'layer', 'upload'], function () {
   var form = layui.form,
     layer = layui.layer,
-    table = layui.table
+    upload = layui.upload
   // layedit = layui.layedit,
   // laydate = layui.laydate
   var $ = layui.jquery,
     element = layui.element
+
   form.on('submit(video)', function (data) {
-    create_data = JSON.stringify(data.field)
+    createData = JSON.stringify(data.field)
     $.ajax({
-      url: serverIp + '/performance/video/create',
+      url: SERVERIP + '/performance/video/create',
       type: 'get',
       dataType: 'json',
       data: {
-        data: create_data
+        data: createData
       },
       async: true
       // success: function (result) {
@@ -41,46 +41,62 @@ layui.use(['form', 'layer', 'table'], function () {
       layer.msg(result)
     })
   })
+
+  upload.render({
+    elem: '#uploadVideo',
+    url: SERVERIP + '/performance/video/upload',
+    accept: 'file',
+    done: function (res) {
+      console.log(res)
+      if (res.code > 0) {
+        return layer.msg('上传失败')
+      }
+      return layer.msg('上传成功')
+    },
+    error: function () {
+      return layer.msg('File upload failed, please try again')
+    }
+  })
 })
 
 function getHeadRM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/video/show/read/mbps',
+    url: SERVERIP + '/performance/video/show/read/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 function getHeadWM () {
-  var head_data = new Array()
+  var headerData = new Array()
   $.ajax({
-    url: serverIp + '/performance/video/show/write/mbps',
+    url: SERVERIP + '/performance/video/show/write/mbps',
     type: 'GET',
     dataType: 'json',
     async: false
   }).done(function (result) {
-    head_data.push([
+    headerData.push([
       {
         field: result.table_name,
         title: result.table_name,
-        colspan: secondary_head_data.length
+        colspan: SECONDARYHEAD.length
       }
     ])
   })
-  head_data.push(secondary_head_data)
-  return head_data
+  headerData.push(SECONDARYHEAD)
+  return headerData
 }
 
 layui.use('table', function () {
@@ -88,7 +104,7 @@ layui.use('table', function () {
   var headData = getHeadRM()
   table.render({
     elem: '#videoTableRM',
-    url: serverIp + '/performance/video/show/read/mbps',
+    url: SERVERIP + '/performance/video/show/read/mbps',
     page: true,
     cols: headData
   })
@@ -99,7 +115,7 @@ layui.use('table', function () {
   var headData = getHeadWM()
   table.render({
     elem: '#videoTableWM',
-    url: serverIp + '/performance/video/show/write/mbps',
+    url: SERVERIP + '/performance/video/show/write/mbps',
     page: true,
     cols: headData
   })
